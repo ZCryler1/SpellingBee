@@ -1,0 +1,325 @@
+/* Estilos para o jogo Spelling Bee */
+body {
+    font-family: 'Arial', sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: white;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+p {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+button {
+    background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+    border: none;
+    padding: 15px 25px;
+    margin: 10px;
+    border-radius: 25px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px 0 rgba(31, 38, 135, 0.2);
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px 0 rgba(31, 38, 135, 0.4);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#inputPalavra {
+    padding: 15px;
+    font-size: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    width: 300px;
+    text-align: center;
+    backdrop-filter: blur(5px);
+}
+
+#inputPalavra::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#inputPalavra:focus {
+    outline: none;
+    border-color: #4ECDC4;
+    box-shadow: 0 0 15px rgba(78, 205, 196, 0.5);
+}
+
+#resultado {
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    min-height: 30px;
+}
+
+.game-controls {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.input-section {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.api-config {
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.api-config h3 {
+    margin: 0 0 15px 0;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.config-section {
+    text-align: center;
+}
+
+.config-section label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.config-section input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+#apiKeySection {
+    margin-top: 15px;
+}
+
+#apiKeyInput {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    width: 250px;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    margin-right: 10px;
+}
+
+#apiKeyInput::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#saveApiKey {
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+.status-indicator {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.status-api {
+    background: linear-gradient(45deg, #4ECDC4, #44A08D);
+    color: white;
+}
+
+.status-local {
+    background: linear-gradient(45deg, #FFD93D, #FF6B6B);
+    color: white;
+}
+
+#timer {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+#timer.warning {
+    background: rgba(255, 107, 107, 0.2);
+    border-color: #FF6B6B;
+    animation: pulse 0.5s infinite alternate;
+}
+
+@keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
+}
+
+.level-indicator {
+    text-align: center;
+    font-size: 1.1em;
+    margin: 10px 0;
+    padding: 8px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.difficulty-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.difficulty-1 { background: linear-gradient(45deg, #4CAF50, #8BC34A); }
+.difficulty-2 { background: linear-gradient(45deg, #2196F3, #03A9F4); }
+.difficulty-3 { background: linear-gradient(45deg, #FF9800, #FFC107); }
+.difficulty-4 { background: linear-gradient(45deg, #FF5722, #E91E63); }
+.difficulty-5 { background: linear-gradient(45deg, #9C27B0, #673AB7); }
+
+.ranking-controls {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.ranking-controls button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+#ranking-section {
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#ranking-section h3 {
+    text-align: center;
+    margin: 0 0 20px 0;
+    font-size: 1.3em;
+    color: #FFD700;
+}
+
+.ranking-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    margin: 5px 0;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border-left: 4px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.ranking-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.ranking-destaque {
+    background: linear-gradient(45deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.2)) !important;
+    border-left-color: #FFD700 !important;
+    box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+}
+
+.ranking-posicao {
+    font-size: 1.2em;
+    font-weight: bold;
+    min-width: 40px;
+}
+
+.ranking-pontos {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #4ECDC4;
+    min-width: 60px;
+}
+
+.ranking-nivel {
+    font-size: 0.9em;
+    color: #FF6B6B;
+    min-width: 50px;
+}
+
+.ranking-data {
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: right;
+    min-width: 80px;
+}
+
+.ranking-empty {
+    text-align: center;
+    padding: 30px;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+}
+
+@media (max-width: 600px) {
+    .ranking-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+    }
+    
+    .ranking-posicao,
+    .ranking-pontos,
+    .ranking-nivel,
+    .ranking-data {
+        min-width: auto;
+    }
+}
